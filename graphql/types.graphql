@@ -1,0 +1,33 @@
+########################################################
+# Types
+extend type User {
+    email: String!
+    name: String
+    roles: [Role]
+}
+
+"type Response User"
+type ResponseUser {
+    accessToken: String!
+    user: User!
+}
+
+"Authenticate input"
+input AuthenticateInput {
+    email: String!
+    password: String!
+}
+
+"Register User input"
+input RegisterUserInput {
+    email: String! @rules(apply: ["required", "email", "unique:users,email"])
+    password: String! @rules(apply: ["required", "confirmed", "min:8"])
+    password_confirmation: String!
+    firstName: String @rules(apply: ["string"])
+    lastName: String @rules(apply: ["string"])
+}
+
+"Role"
+type Role {
+    name: String!
+}

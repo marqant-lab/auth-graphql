@@ -1,0 +1,33 @@
+{
+    "name": "marqant-lab/auth-graphql",
+    "description": "Module for authentication with Laravel Sanctum.",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Dmytro Sydorenko",
+            "email": "dmytro@du.digital"
+        }
+    ],
+    "require": {
+        "laravel/sanctum": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marqant\\AuthGraphGL\\Seeds\\": "database/seeds/",
+            "Marqant\\AuthGraphGL\\Tests\\": "tests/",
+            "Marqant\\AuthGraphGL\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Marqant\\AuthGraphGL\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+               "Marqant\\AuthGraphGL\\Providers\\AuthGraphGLServiceProvider"
+            ]
+        }
+    }
+}
