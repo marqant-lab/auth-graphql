@@ -2,6 +2,7 @@
     "name": "marqant-lab/auth-graphql",
     "description": "Module for authentication with Laravel Sanctum.",
     "type": "package",
+    "license": "MIT",
     "authors": [
         {
             "name": "Dmytro Sydorenko",
