@@ -14,20 +14,20 @@
     },
     "autoload": {
         "psr-4": {
-            "Marqant\\AuthGraphGL\\Seeds\\": "database/seeds/",
-            "Marqant\\AuthGraphGL\\Tests\\": "tests/",
-            "Marqant\\AuthGraphGL\\": "src/"
+            "Marqant\\AuthGraphQL\\Seeds\\": "database/seeds/",
+            "Marqant\\AuthGraphQL\\Tests\\": "tests/",
+            "Marqant\\AuthGraphQL\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Marqant\\AuthGraphGL\\Tests\\": "tests/"
+            "Marqant\\AuthGraphQL\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-               "Marqant\\AuthGraphGL\\Providers\\AuthGraphGLServiceProvider"
+               "Marqant\\AuthGraphQL\\Providers\\AuthGraphQLServiceProvider"
             ]
         }
     }

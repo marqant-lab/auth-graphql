@@ -1,6 +1,6 @@
 <?php
 
-namespace Marqant\AuthGraphGL\Seeds;
+namespace Marqant\AuthGraphQL\Seeds;
 
 
 use Illuminate\Database\Seeder;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 /**
  * Class UserSeeder
  *
- * @package Marqant\AuthGraphGL\Seeds
+ * @package Marqant\AuthGraphQL\Seeds
  */
 class UserSeeder extends Seeder
 {
