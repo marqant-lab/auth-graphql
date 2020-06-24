@@ -1,6 +1,6 @@
 <?php
 
-namespace Marqant\AuthGraphGL\tests;
+namespace Marqant\AuthGraphQL\tests;
 
 
 use Tests\TestCase;
@@ -8,12 +8,12 @@ use Tests\TestCase;
 /**
  * Class AuthenticationTest
  *
- * @package Marqant\AuthGraphGL\tests
+ * @package Marqant\AuthGraphQL\tests
  */
 class AuthenticationTest extends TestCase
 {
     /**
-     * @group       AuthGraphGL
+     * @group       AuthGraphQL
      *
      * @param array $userInput
      *
@@ -58,7 +58,7 @@ class AuthenticationTest extends TestCase
     }
 
     /**
-     * @group       AuthGraphGL
+     * @group       AuthGraphQL
      *
      * @param array $userInput
      *
@@ -127,7 +127,7 @@ class AuthenticationTest extends TestCase
     }
 
     /**
-     * @group       AuthGraphGL
+     * @group       AuthGraphQL
      *
      * @param array $userInput
      *

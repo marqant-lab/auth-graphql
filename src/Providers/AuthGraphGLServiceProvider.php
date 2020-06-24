@@ -1,16 +1,16 @@
 <?php
 
-namespace Marqant\AuthGraphGL\Providers;
+namespace Marqant\AuthGraphQL\Providers;
 
 
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class AuthGraphGLServiceProvider
+ * Class AuthGraphQLServiceProvider
  *
- * @package Marqant\AuthGraphGL\Providers
+ * @package Marqant\AuthGraphQL\Providers
  */
-class AuthGraphGLServiceProvider extends ServiceProvider
+class AuthGraphQLServiceProvider extends ServiceProvider
 {
 
     public function boot()
@@ -49,7 +49,7 @@ class AuthGraphGLServiceProvider extends ServiceProvider
     {
         config([
             'lighthouse.namespaces.queries' => array_merge((array) config('lighthouse.namespaces.queries'),
-                (array) 'Marqant\\AuthGraphGL\\GraphQL\\Queries'),
+                (array) 'Marqant\\AuthGraphQL\\GraphQL\\Queries'),
         ]);
     }
 
@@ -57,7 +57,7 @@ class AuthGraphGLServiceProvider extends ServiceProvider
     {
         config([
             'lighthouse.namespaces.mutations' => array_merge((array) config('lighthouse.namespaces.mutations'),
-                (array) 'Marqant\\AuthGraphGL\\GraphQL\\Mutations'),
+                (array) 'Marqant\\AuthGraphQL\\GraphQL\\Mutations'),
         ]);
     }
 }

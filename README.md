@@ -1,4 +1,4 @@
-# "Auth GraphGL" package for authentication
+# "Auth GraphQL" package for authentication
 
 ## What is it?
 
@@ -61,7 +61,7 @@ If you want to execute package tests add this to the project composer.json:
 "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Marqant\\AuthGraphGL\\Tests\\": "vendor/marqant-lab/auth-graphql/tests/"
+            "Marqant\\AuthGraphQL\\Tests\\": "vendor/marqant-lab/auth-graphql/tests/"
         }
     },
 ...
@@ -69,7 +69,7 @@ If you want to execute package tests add this to the project composer.json:
 And this to the phpunit.xml
 
 ```xml
-        <testsuite name="AuthGraphGL">
+        <testsuite name="AuthGraphQL">
             <directory suffix="Test.php">./vendor/marqant-lab/auth-graphql/tests</directory>
         </testsuite>
 ```
@@ -94,9 +94,9 @@ abstract class TestCase extends BaseTestCase
 
 And after you can check it by executing:
 ```shell script
-$ php artisan test --group=AuthGraphGL
+$ php artisan test --group=AuthGraphQL
 or
-$ phpunit --group=AuthGraphGL
+$ phpunit --group=AuthGraphQL
 ```
 
 
@@ -105,7 +105,7 @@ $ phpunit --group=AuthGraphGL
 If you need demo users, just execute:
 
 ```shell script
-$ php artisan db:seed --class=Marqant\\AuthGraphGL\\Seeds\\UserSeeder
+$ php artisan db:seed --class=Marqant\\AuthGraphQL\\Seeds\\UserSeeder
 ```
 
 This seeder will create `'demo@demo.com'` and `'admin@admin.com'` Users 

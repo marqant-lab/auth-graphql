@@ -1,6 +1,6 @@
 <?php
 
-namespace Marqant\AuthGraphGL\GraphQL\Mutations;
+namespace Marqant\AuthGraphQL\GraphQL\Mutations;
 
 
 use Illuminate\Support\Facades\Hash;
@@ -9,7 +9,7 @@ use Illuminate\Validation\ValidationException;
 /**
  * Class Authenticate
  *
- * @package Marqant\AuthGraphGL\GraphQL\Mutations
+ * @package Marqant\AuthGraphQL\GraphQL\Mutations
  */
 class Authenticate
 {
