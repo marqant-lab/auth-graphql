@@ -1,5 +1,5 @@
 ########################################################
 # Query
 extend type Query {
-    me: User! @auth @middleware(checks: ["auth:sanctum"])
+    me: User! @auth @guard
 }

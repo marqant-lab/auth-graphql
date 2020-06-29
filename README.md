@@ -27,6 +27,21 @@ and
 $ php artisan migrate
 ```
 
+And add this to your 'config/lighthouse.php':
+
+```php
+...
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Guard
+    |--------------------------------------------------------------------------
+...
+    */
+
+    'guard' => 'sanctum',
+...
+```
+
 After this add import to your `schema.graphql`
 
 ```graphql
