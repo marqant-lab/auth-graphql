@@ -24,13 +24,18 @@ class Authenticate
     public function resolve($rootValue, array $args)
     {
         $model = app(config('auth.providers.users.model'));
+
+        try {
         $user = $model
             ->where(config('auth.username'), $args['email'])
             ->firstOrFail();
+        } catch (\Exception $exception) {
+            throw new \Exception(__('auth-graphql::Wrong username or password'));
+        }
 
         if (!$user || !Hash::check($args['password'], $user->password)) {
             throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+                'email' => [__('auth-graphql::Wrong username or password')],
             ]);
         }
 
