@@ -28,6 +28,15 @@ class AuthGraphQLServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/../../config/authentication.php',
             'auth');
+
+        //////////////////
+        // translations //
+        //////////////////
+        $this->loadTranslationsFrom(__DIR__ . '../../lang', 'auth-graphql');
+
+        $this->publishes([
+            __DIR__ . '../../lang' => resource_path('lang/vendor/auth-graphql'),
+        ]);
     }
 
     public function register()
