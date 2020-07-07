@@ -33,7 +33,7 @@ class AuthGraphQLServiceProvider extends ServiceProvider
         // translations //
         //////////////////
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'auth-graphql');
-        $this->loadJSONTranslationsFrom(__DIR__.'/../../lang');
+        $this->loadJSONTranslationsFrom(__DIR__ . '/../../lang');
 
         $this->publishes([
             __DIR__ . '/../../lang' => resource_path('lang/vendor/auth-graphql'),

@@ -30,12 +30,12 @@ class Authenticate
             ->where(config('auth.username'), $args['email'])
             ->firstOrFail();
         } catch (\Exception $exception) {
-            throw new \Exception(trans('Wrong username or password.'));
+            throw new \Exception(__('Wrong username or password.'));
         }
 
         if (!$user || !Hash::check($args['password'], $user->password)) {
             throw ValidationException::withMessages([
-                'email' => [trans('Wrong username or password.')],
+                'email' => [__('Wrong username or password.')],
             ]);
         }
 
