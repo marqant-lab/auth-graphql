@@ -26,9 +26,9 @@ class Authenticate
         $model = app(config('auth.providers.users.model'));
 
         try {
-        $user = $model
-            ->where(config('auth.username'), $args['email'])
-            ->firstOrFail();
+            $user = $model
+                ->where(config('auth.username'), $args['email'])
+                ->firstOrFail();
         } catch (\Exception $exception) {
             throw new \Exception(__('Wrong username or password.'));
         }
