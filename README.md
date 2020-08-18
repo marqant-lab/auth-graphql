@@ -15,7 +15,7 @@ This package uses config `auth.providers.users.model` for authentication.
 Require the package through composer.
 
 ```shell script
-$ compsoer require marqant-lab/auth-graphql
+$ composer require marqant-lab/auth-graphql
 ```
 
 After this add this trait to User model: `use HasApiTokens;`
