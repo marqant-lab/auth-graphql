@@ -38,6 +38,11 @@ class AuthGraphQLServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../lang' => resource_path('lang/vendor/auth-graphql'),
         ]);
+
+        ////////////////
+        // migrations //
+        ////////////////
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
     }
 
     public function register()
