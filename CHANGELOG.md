@@ -3,6 +3,16 @@
 
 'marqant-lab/auth-graphql' package
 
+### 0.0.13 (2020-10-21)
+
+Added:
+ - [#10] implemented Authenticate any Model functional
+ - [#10] created CHANGELOG.md
+
+Updated:
+ - [#10] updated tests
+ - [#10] updated README.md
+
 ## 0.0.12 (2020-08-18)
 
 Small changes:
@@ -45,6 +55,7 @@ Added:
 
 
 
+[#10]: https://github.com/marqant-lab/auth-graphql/pull/10
 [#9]: https://github.com/marqant-lab/auth-graphql/pull/9
 [#8]: https://github.com/marqant-lab/auth-graphql/pull/8
 [#7]: https://github.com/marqant-lab/auth-graphql/pull/7
