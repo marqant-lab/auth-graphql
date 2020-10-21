@@ -2,8 +2,9 @@
 
 namespace Marqant\AuthGraphQL\tests;
 
-
 use Tests\TestCase;
+use Illuminate\Support\Facades\Hash;
+use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
 
 /**
  * Class AuthenticationTest
@@ -12,6 +13,8 @@ use Tests\TestCase;
  */
 class AuthenticationTest extends TestCase
 {
+    use MakesGraphQLRequests;
+
     /**
      * @group       AuthGraphQL
      *
@@ -31,9 +34,6 @@ class AuthenticationTest extends TestCase
                     user {
                         email
                         name
-                        roles {
-                           name
-                        }
                     }
                 }
             }',
@@ -42,7 +42,24 @@ class AuthenticationTest extends TestCase
 
         // get accessToken (also check if it is exists)
         $access_token = $registerResponse->json("data.register.accessToken");
-        $registerResponse->assertGraphQLValidationPasses()
+
+        // check if we received token
+        $this->assertNotEmpty($access_token);
+
+        // check response
+        $registerResponse->assertOk()
+            ->assertGraphQLValidationPasses()
+            ->assertJsonStructure([
+                'data' => [
+                    'register' => [
+                        'accessToken',
+                        'user' => [
+                            'email',
+                            'name',
+                        ],
+                    ],
+                ],
+            ])
             ->assertJson([
                 'data' => [
                     'register' => [
@@ -50,7 +67,6 @@ class AuthenticationTest extends TestCase
                         'user' => [
                             'email' => $userInput['input']['email'],
                             'name'  => "{$userInput['input']['firstName']} {$userInput['input']['lastName']}",
-                            'roles' => [],
                         ],
                     ],
                 ],
@@ -68,29 +84,12 @@ class AuthenticationTest extends TestCase
      */
     public function testAuthenticateSuccessfully(array $userInput): void
     {
-        // register user
-        $this->postGraphQL([
-            "query" => 'mutation($input: RegisterUserInput!) {
-                register(input: $input) {
-                    accessToken
-                    user {
-                        email
-                        name
-                        roles {
-                           name
-                        }
-                    }
-                }
-            }',
-            "variables" => $userInput,
-        ]);
-
-        $name = "{$userInput['input']['firstName']} {$userInput['input']['lastName']}";
-        unset(
-            $userInput['input']['password_confirmation'],
-            $userInput['input']['firstName'],
-            $userInput['input']['lastName']
-        );
+        // create a User
+        $User = app(config('auth.providers.users.model'));
+        $User->name = "{$userInput['input']['firstName']} {$userInput['input']['lastName']}";
+        $User->email = $userInput['input']['email'];
+        $User->password = Hash::make($userInput['input']['password']);
+        $User->save();
 
         // authenticate user
         $authenticateResponse = $this->postGraphQL([
@@ -100,64 +99,58 @@ class AuthenticationTest extends TestCase
                     user {
                         email
                         name
-                        roles {
-                           name
-                        }
                     }
                 }
             }',
-            "variables" => $userInput,
+            "variables" => [
+                "input" => [
+                    "email" => $User->email,
+                    "password" => $userInput['input']['password'],
+                ]
+            ],
         ]);
 
         // get accessToken (also check if it is exists)
         $access_token = $authenticateResponse->json("data.authenticate.accessToken");
+
+        // check if we received token
+        $this->assertNotEmpty($access_token);
+
         // check response
-        $authenticateResponse->assertJson([
-            'data' => [
-                'authenticate' => [
-                    'accessToken' => $access_token,
-                    'user' => [
-                        'email' => $userInput['input']['email'],
-                        'name'  => $name,
-                        'roles' => [],
+        $authenticateResponse->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    'authenticate' => [
+                        'accessToken',
+                        'user' => [
+                            'email',
+                            'name',
+                        ],
                     ],
                 ],
-            ],
+            ])
+            ->assertJson([
+                'data' => [
+                    'authenticate' => [
+                        'accessToken' => $access_token,
+                        'user' => [
+                            'email' => $User->email,
+                            'name'  => $User->name,
+                        ],
+                    ],
+                ],
         ]);
     }
 
     /**
-     * @group       AuthGraphQL
-     *
-     * @param array $userInput
-     *
-     * @dataProvider getRegisterUserData
+     * @group AuthGraphQL
      *
      * @test
      */
-    public function testGetUserInfo(array $userInput): void
+    public function testGetUserInfo(): void
     {
-        // register user
-        $this->postGraphQL([
-            "query" => 'mutation($input: RegisterUserInput!) {
-                register(input: $input) {
-                    accessToken
-                    user {
-                        email
-                        name
-                        roles {
-                           name
-                        }
-                    }
-                }
-            }',
-            "variables" => $userInput,
-        ]);
-
-        // get user from database
-        $model = app(config('auth.providers.users.model'));
-        $user = $model->where(config('auth.username'), $userInput['input']['email'])
-            ->firstOrFail();
+        // create a User
+        $User = factory(config('auth.providers.users.model'))->create();
 
         // get user info through GraphQL
         $meResponse = $this->postGraphQL([
@@ -165,24 +158,29 @@ class AuthenticationTest extends TestCase
                 me {
                     name
                     email
-                    roles {
-                        name
-                    }
                 }
               }',
         ], [
-            'Authorization' => 'Bearer ' . $user->createToken($user->id)->plainTextToken,
+            'Authorization' => 'Bearer ' . $User->createToken($User->id)->plainTextToken,
         ]);
 
         // check response
-        $meResponse->assertJson([
-            'data' => [
-                'me' => [
-                    'email' => $userInput['input']['email'],
-                    'name'  => "{$userInput['input']['firstName']} {$userInput['input']['lastName']}",
-                    'roles' => [],
-                ]
-            ]
+        $meResponse->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    'me' => [
+                        'email',
+                        'name',
+                    ],
+                ],
+            ])
+            ->assertJson([
+                'data' => [
+                    'me' => [
+                        'email' => $User->email,
+                        'name'  => $User->name,
+                    ],
+                ],
         ]);
     }
 

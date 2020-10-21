@@ -12,5 +12,5 @@ return [
     |
     */
 
-    'username' => 'email',
+    'user_key_field' => 'email',
 ];
