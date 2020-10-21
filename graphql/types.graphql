@@ -12,10 +12,22 @@ type ResponseUser {
     user: User!
 }
 
+"type Response Auth"
+type ResponseAuth {
+    accessToken: String!
+}
+
 "Authenticate input"
 input AuthenticateInput {
     email: String!
     password: String!
+}
+
+"Authenticate Model input"
+input AuthModelInput {
+    tableName: String! @rules(apply: ["string"])
+    keyValue: String! @rules(apply: ["string"])
+    secretValue: String! @rules(apply: ["string"])
 }
 
 "Register User input"

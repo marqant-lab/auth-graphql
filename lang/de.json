@@ -1,3 +1,5 @@
 {
-    "Wrong username or password.": "Falscher Nutzername oder Passwort."
+    "Wrong username or password.": "Falscher Nutzername oder Passwort.",
+    "Wrong key field or it value.": "Falsches Schlüsselfeld oder Wert.",
+    "Wrong secret field or it value.": "Falsches geheimes Feld oder Wert."
 }

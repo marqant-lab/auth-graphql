@@ -27,7 +27,7 @@ class Authenticate
 
         try {
             $user = $model
-                ->where(config('auth.username'), $args['email'])
+                ->where(config('auth.user_key_field'), $args['email'])
                 ->firstOrFail();
         } catch (\Exception $exception) {
             throw new \Exception(__('Wrong username or password.'));

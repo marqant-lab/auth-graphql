@@ -1,6 +1,19 @@
 ########################################################
 # Mutation
 extend type Mutation {
-    register(input: RegisterUserInput! @spread): ResponseUser! @field(resolver: "Marqant\\AuthGraphQL\\GraphQL\\Mutations\\Register@resolve")
-    authenticate(input: AuthenticateInput! @spread): ResponseUser!  @field(resolver: "Marqant\\AuthGraphQL\\GraphQL\\Mutations\\Authenticate@resolve")
+    """
+    Register User mutation
+    """
+    register(input: RegisterUserInput! @spread): ResponseUser!
+        @field(resolver: "Marqant\\AuthGraphQL\\GraphQL\\Mutations\\Register@resolve")
+    """
+    Authenticate User mutation
+    """
+    authenticate(input: AuthenticateInput! @spread): ResponseUser!
+        @field(resolver: "Marqant\\AuthGraphQL\\GraphQL\\Mutations\\Authenticate@resolve")
+    """
+    Authenticate any Model mutation
+    """
+    authenticateModel(input: AuthModelInput! @spread): ResponseAuth!
+        @field(resolver: "Marqant\\AuthGraphQL\\GraphQL\\Mutations\\AuthenticateModel@resolve")
 }
