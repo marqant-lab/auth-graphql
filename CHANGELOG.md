@@ -3,15 +3,20 @@
 
 'marqant-lab/auth-graphql' package
 
-### 0.0.13 (2020-10-21)
+### Unreleased
+
+Add:
+ - [#10] Implement the Logic to signin any Model (also the user) via an email link (email_token).
+
+### 0.0.14 (2020-10-21)
 
 Added:
- - [#10] implemented Authenticate any Model functional
- - [#10] created CHANGELOG.md
+ - [#11] implemented Authenticate any Model functional
+ - [#11] created CHANGELOG.md
 
 Updated:
- - [#10] updated tests
- - [#10] updated README.md
+ - [#11] updated tests
+ - [#11] updated README.md
 
 ## 0.0.12 (2020-08-18)
 
@@ -55,6 +60,7 @@ Added:
 
 
 
+[#11]: https://github.com/marqant-lab/auth-graphql/pull/11
 [#10]: https://github.com/marqant-lab/auth-graphql/pull/10
 [#9]: https://github.com/marqant-lab/auth-graphql/pull/9
 [#8]: https://github.com/marqant-lab/auth-graphql/pull/8
