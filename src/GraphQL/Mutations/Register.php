@@ -3,7 +3,10 @@
 namespace Marqant\AuthGraphQL\GraphQL\Mutations;
 
 
+use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Hash;
+use Tjventurini\GraphQLExceptions\Exceptions\ClientSaveInternalGraphQLException;
 
 /**
  * Class Register
@@ -18,25 +21,26 @@ class Register
      *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolve($rootValue, array $args)
     {
-        $model = app(config('auth.providers.users.model'));
-        $name  = (empty($args['lastName'])) ? $args['firstName'] : "{$args['firstName']} {$args['lastName']}";
-
-        $input = collect($args)
-            ->except('password_confirmation')
-            ->toArray();
-        $input['name'] = $name;
-        $input['password'] = Hash::make($input['password']);
-
-        $model->fill($input);
-        $model->save();
-
-        return [
-            'accessToken' => $model->createToken($model->id)->plainTextToken,
-            'user'        => $model,
-        ];
+        try {
+            $model = app(config('auth.providers.users.model'));
+            $name = (empty($args['lastName'])) ? $args['firstName'] : "{$args['firstName']} {$args['lastName']}";
+            $input = collect($args)
+                ->except('password_confirmation')
+                ->toArray();
+            $input['name'] = $name;
+            $input['password'] = Hash::make($input['password']);
+            $model->fill($input);
+            $model->save();
+            return [
+                'accessToken' => $model->createToken($model->id)->plainTextToken,
+                'user' => $model,
+            ];
+        } catch (Exception $exception) {
+            throw new ClientSaveInternalGraphQLException($exception);
+        }
     }
 }
