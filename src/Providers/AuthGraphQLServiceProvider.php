@@ -2,7 +2,6 @@
 
 namespace Marqant\AuthGraphQL\Providers;
 
-
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -27,7 +26,8 @@ class AuthGraphQLServiceProvider extends ServiceProvider
         // merge package configuration with published configuration file
         $this->mergeConfigFrom(
             __DIR__ . '/../../config/authentication.php',
-            'auth');
+            'auth'
+        );
 
         //////////////////
         // translations //
@@ -58,16 +58,20 @@ class AuthGraphQLServiceProvider extends ServiceProvider
     public function registerQueries()
     {
         config([
-            'lighthouse.namespaces.queries' => array_merge((array) config('lighthouse.namespaces.queries'),
-                (array) 'Marqant\\AuthGraphQL\\GraphQL\\Queries'),
+            'lighthouse.namespaces.queries' => array_merge(
+                (array) config('lighthouse.namespaces.queries'),
+                (array) 'Marqant\\AuthGraphQL\\GraphQL\\Queries'
+            ),
         ]);
     }
 
     public function registerMutations()
     {
         config([
-            'lighthouse.namespaces.mutations' => array_merge((array) config('lighthouse.namespaces.mutations'),
-                (array) 'Marqant\\AuthGraphQL\\GraphQL\\Mutations'),
+            'lighthouse.namespaces.mutations' => array_merge(
+                (array) config('lighthouse.namespaces.mutations'),
+                (array) 'Marqant\\AuthGraphQL\\GraphQL\\Mutations'
+            ),
         ]);
     }
 }

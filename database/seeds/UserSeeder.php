@@ -2,7 +2,6 @@
 
 namespace Marqant\AuthGraphQL\Seeds;
 
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
