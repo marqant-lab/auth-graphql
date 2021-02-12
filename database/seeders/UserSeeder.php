@@ -1,7 +1,6 @@
 <?php
 
-namespace Marqant\AuthGraphQL\Seeds;
-
+namespace Marqant\AuthGraphQL\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;

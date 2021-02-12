@@ -10,13 +10,13 @@
         }
     ],
     "require": {
-        "illuminate/support": "^7.0",
-        "laravel/sanctum": "^2.3",
+        "illuminate/support": "^8.0",
+        "laravel/sanctum": "^2.9",
         "tjventurini/graphql-exceptions": "~0.0.6"
     },
     "autoload": {
         "psr-4": {
-            "Marqant\\AuthGraphQL\\Seeds\\": "database/seeds/",
+            "Marqant\\AuthGraphQL\\Database\\Seeders\\": "database/seeders/",
             "Marqant\\AuthGraphQL\\Tests\\": "tests/",
             "Marqant\\AuthGraphQL\\": "src/"
         }

@@ -8,6 +8,13 @@
 Add (closed):
  - [#10] Implement the Logic to signin any Model (also the user) via an email link (email_token).
 
+### 2.0.0 (2021-02-12)
+
+Updated:
+ - Updated README "Installation"
+ - Updated "illuminate/support": "^8.0" in composer.json.
+ - Updated "laravel/sanctum": "^2.9" in composer.json.
+
 ### 1.0.0 (2021-02-12)
 
 Added:

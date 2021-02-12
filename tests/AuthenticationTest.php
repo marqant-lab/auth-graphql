@@ -3,7 +3,9 @@
 namespace Marqant\AuthGraphQL\tests;
 
 use Tests\TestCase;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
 use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
 
 /**
@@ -150,7 +152,9 @@ class AuthenticationTest extends TestCase
     public function testGetUserInfo(): void
     {
         // create a User
-        $User = factory(config('auth.providers.users.model'))->create();
+        $user_model_class = config('auth.providers.users.model');
+        /** @var HasApiTokens|Model $User */
+        $User = $user_model_class::factory()->create();
 
         // get user info through GraphQL
         $meResponse = $this->postGraphQL([

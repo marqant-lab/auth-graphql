@@ -18,7 +18,16 @@ For Laravel 7.x install v1.0.0:
 composer require marqant-lab/auth-graphql:1.0.0
 ```
 
-After this add this trait to User model: `use HasApiTokens;`
+
+Which package tag use with your Laravel version:
+
+| Laravel version |    package tag     |
+| :-------------: | :----------------: |
+|       7.x       |      v1.0.0        |
+|       8.x       | v2.0.0 (and upper) |
+
+
+After add this trait to the User model: `use HasApiTokens;`
 
 Execute:
 ```
