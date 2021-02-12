@@ -6,10 +6,16 @@ Please make sure that you install before
 
 This package uses config `auth.providers.users.model` for base authentication.  
 
-Require the package through composer.
+Require the package through composer:
 
 ```shell script
 composer require marqant-lab/auth-graphql
+```
+
+For Laravel 7.x install v1.0.0:
+
+```shell script
+composer require marqant-lab/auth-graphql:1.0.0
 ```
 
 After this add this trait to User model: `use HasApiTokens;`
@@ -17,7 +23,9 @@ After this add this trait to User model: `use HasApiTokens;`
 Execute:
 ```
 php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+```
 and
+```
 php artisan migrate
 ```
 

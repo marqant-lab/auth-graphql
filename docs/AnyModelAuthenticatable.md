@@ -3,7 +3,7 @@
 
 It is very easy to do, just simply follow these steps. 
 
-For example you create Model 'Worker' (table `worker`) and want to authenticate with this model.
+For example you create Model 'Worker' (table `workers`) and want to authenticate with this model.
 
 #### 1st step
 
@@ -14,7 +14,7 @@ And it should have one field filled with Laravel Hash.
 For example it can be `secret` field.  
 
 ```php
-$Worker->secret = Hash::make('Password123$');
+$Worker->secret = Hash::make('secretpassword');
 ```
 
 #### 2nd step
@@ -118,7 +118,7 @@ mutation AuthenticateModel($input: AuthModelInput!) {
   "input": {
     "tableName": "workers",
     "keyValue": "some unique key",
-    "secretValue": "Password123$"
+    "secretValue": "secretpassword"
   }
 }
 ```

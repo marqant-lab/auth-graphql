@@ -2,7 +2,6 @@
 
 namespace Marqant\AuthGraphQL\GraphQL\Mutations;
 
-
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Tjventurini\GraphQLExceptions\Exceptions\ClientSaveInternalGraphQLException;
