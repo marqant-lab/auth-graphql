@@ -47,12 +47,12 @@ input RegisterUserInput {
     """
     'name' - default User property (not required if 'firstName' is present),
     you can send 'firstName' and 'lastName' instead,
-    in this case it would be saved as 'name' ("firstName lastName").
+    in this case it would be saved as 'name' User property (like "firstName lastName").
     """
     name: String @rules(apply: ["required_without:input.firstName", "filled", "string"])
     """
     will be saved to 'name' (default User property),
-    if 'name' and 'lastName' is empty,
+    if 'name' and 'lastName' are empty,
     or with 'lastName' (see 'lastName' description).
     """
     firstName: String @rules(apply: ["required_without:input.name", "filled", "string"])
