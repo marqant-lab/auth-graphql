@@ -89,8 +89,7 @@ class AuthenticationTest extends TestCase
     {
         // create a User
         $User           = app(config('auth.providers.users.model'));
-        $name           = $this->getUserName($userInput['input']);
-        $User->name     = $name;
+        $User->name     = $this->getUserName($userInput['input']);
         $User->email    = $userInput['input']['email'];
         $User->password = Hash::make($userInput['input']['password']);
         $User->save();
