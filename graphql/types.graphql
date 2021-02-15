@@ -1,10 +1,5 @@
 ########################################################
 # Types
-extend type User {
-    email: String!
-    name: String
-    roles: [Role]
-}
 
 "type Response User"
 type ResponseUser {
