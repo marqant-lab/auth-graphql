@@ -25,7 +25,13 @@ class Register
     {
         try {
             $model = app(config('auth.providers.users.model'));
-            $name = (empty($args['lastName'])) ? $args['firstName'] : "{$args['firstName']} {$args['lastName']}";
+            // get 'name' attribute first
+            $name  = $args['name'] ?? null;
+            // lok for 'firstName' and 'lastName' if 'name' was empty
+            if (empty($name)) {
+                $name = (empty($args['lastName'])) ? $args['firstName'] : "{$args['firstName']} {$args['lastName']}";
+            }
+
             $input = collect($args)
                 ->except('password_confirmation')
                 ->toArray();

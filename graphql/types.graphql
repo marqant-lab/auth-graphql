@@ -32,11 +32,36 @@ input AuthModelInput {
 
 "Register User input"
 input RegisterUserInput {
+    """
+    'email' - required User property
+    """
     email: String! @rules(apply: ["required", "email", "unique:users,email"])
+    """
+    'password' - required User property
+    """
     password: String! @rules(apply: ["required", "confirmed", "min:8"])
+    """
+    password confirmation
+    """
     password_confirmation: String!
-    firstName: String @rules(apply: ["string"])
-    lastName: String @rules(apply: ["string"])
+    """
+    'name' - default User property (not required if 'firstName' is present),
+    you can send 'firstName' and 'lastName' instead,
+    in this case it would be saved as 'name' ("firstName lastName").
+    """
+    name: String @rules(apply: ["required_without:input.firstName", "filled", "string"])
+    """
+    will be saved to 'name' (default User property),
+    if 'name' and 'lastName' is empty,
+    or with 'lastName' (see 'lastName' description).
+    """
+    firstName: String @rules(apply: ["required_without:input.name", "filled", "string"])
+    """
+    will be saved to 'name' (default User property),
+    together with 'firstName', like "firstName lastName",
+    if 'name' is empty.
+    """
+    lastName: String @rules(apply: ["filled", "string"])
 }
 
 "Role"

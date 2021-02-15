@@ -48,6 +48,7 @@ class AuthenticationTest extends TestCase
         // check if we received token
         $this->assertNotEmpty($access_token);
 
+        $name = $this->getUserName($userInput['input']);
         // check response
         $registerResponse->assertOk()
             ->assertGraphQLValidationPasses()
@@ -68,7 +69,7 @@ class AuthenticationTest extends TestCase
                         'accessToken' => $access_token,
                         'user' => [
                             'email' => $userInput['input']['email'],
-                            'name'  => "{$userInput['input']['firstName']} {$userInput['input']['lastName']}",
+                            'name'  => $name,
                         ],
                     ],
                 ],
@@ -87,9 +88,10 @@ class AuthenticationTest extends TestCase
     public function testAuthenticateSuccessfully(array $userInput): void
     {
         // create a User
-        $User = app(config('auth.providers.users.model'));
-        $User->name = "{$userInput['input']['firstName']} {$userInput['input']['lastName']}";
-        $User->email = $userInput['input']['email'];
+        $User           = app(config('auth.providers.users.model'));
+        $name           = $this->getUserName($userInput['input']);
+        $User->name     = $name;
+        $User->email    = $userInput['input']['email'];
         $User->password = Hash::make($userInput['input']['password']);
         $User->save();
 
@@ -189,12 +191,31 @@ class AuthenticationTest extends TestCase
     }
 
     /**
+     * @param array $data
+     *
+     * @return string
+     */
+    private function getUserName(array $data): string
+    {
+        $name = $data['name'] ?? null;
+        if (empty($name)) {
+            if (empty($data['firstName'])) {
+                $data['firstName'] = '';
+            }
+
+            $name = (empty($data['lastName'])) ? $data['firstName'] : "{$data['firstName']} {$data['lastName']}";
+        }
+
+        return $name;
+    }
+
+    /**
      * @return array
      */
     public function getRegisterUserData(): array
     {
         return [
-            'demoUser' => [
+            'demoUserFirstLastName' => [
                 0 => [
                     "input" => [
                         "email"                 => "demo@demo.com",
@@ -202,8 +223,28 @@ class AuthenticationTest extends TestCase
                         "password_confirmation" => "12345678",
                         "firstName"             => "Max",
                         "lastName"              => "Mustermann",
-                    ]
-                ]
+                    ],
+                ],
+            ],
+            'demoUserName' => [
+                0 => [
+                    "input" => [
+                        "email"                 => "demo@demo.com",
+                        "password"              => "9874563210",
+                        "password_confirmation" => "9874563210",
+                        "name"                  => "Max Mustermann",
+                    ],
+                ],
+            ],
+            'demoUserFirstName' => [
+                0 => [
+                    "input" => [
+                        "email"                 => "demo@demo.com",
+                        "password"              => "12345678",
+                        "password_confirmation" => "12345678",
+                        "firstName"             => "Max",
+                    ],
+                ],
             ],
         ];
     }
