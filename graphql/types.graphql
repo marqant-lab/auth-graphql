@@ -58,8 +58,3 @@ input RegisterUserInput {
     """
     lastName: String @rules(apply: ["filled", "string"])
 }
-
-"Role"
-type Role {
-    name: String!
-}
