@@ -32,9 +32,7 @@ mutation($input: RegisterUserInput!){
       "email": "demo@demo.at",
       "password": "123456789",
       "password_confirmation": "123456789",
-      "name": "John2423",
-      "firstName": "John",
-      "lastName": "Doe"
+      "name": "John Doe"
   }
 }
 ```
@@ -47,7 +45,7 @@ mutation($input: RegisterUserInput!){
       "accessToken": "2|6okeHVOnUeHR392ArASz957LV2dBFCG5QHtFpn16",
       "user": {
         "id": "1",
-        "name": "John2423",
+        "name": "John Doe",
         "email": "demo@demo.at"
       }
     }
@@ -92,7 +90,7 @@ mutation($input: AuthenticateInput!){
       "accessToken": "2|6okeHVOnUeHR392ArASz957LV2dBFCG5QHtFpn16",
       "user": {
         "id": "1",
-        "name": "John2423",
+        "name": "John Doe",
         "email": "demo@demo.at"
       }
     }
