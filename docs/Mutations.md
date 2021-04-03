@@ -47,6 +47,7 @@ mutation($input: RegisterUserInput!){
       "accessToken": "2|6okeHVOnUeHR392ArASz957LV2dBFCG5QHtFpn16",
       "user": {
         "id": "1",
+        "name": "John2423",
         "email": "demo@demo.at"
       }
     }
@@ -91,6 +92,7 @@ mutation($input: AuthenticateInput!){
       "accessToken": "2|6okeHVOnUeHR392ArASz957LV2dBFCG5QHtFpn16",
       "user": {
         "id": "1",
+        "name": "John2423",
         "email": "demo@demo.at"
       }
     }
