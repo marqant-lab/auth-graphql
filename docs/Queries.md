@@ -11,8 +11,6 @@
 Can be used to get all user data for a specific accessToken.
 (in this case only the accessToken is used instead of the credentials, like in the `authenticate` case.)
 
-Can be used to get all user data for a specific accessToken.
-(in this case only the accessToken is used instead of the credentials, like in the `authenticate` case.)
 
 **request preparation:**
 
