@@ -52,7 +52,7 @@ no variables needed
 {
   "data": {
     "id": "1",
-    "name": "Frodo12",
+    "name": "John Doe",
     "email": "demo@demo.at"
   }
 }
