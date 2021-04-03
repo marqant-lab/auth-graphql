@@ -39,6 +39,20 @@ mutation($input: RegisterUserInput!){
 }
 ```
 
+**Result:**
+```json
+{
+  "data": {
+    "authenticate": {
+      "accessToken": "2|6okeHVOnUeHR392ArASz957LV2dBFCG5QHtFpn16",
+      "user": {
+        "id": "1",
+        "email": "demo@demo.at"
+      }
+    }
+  }
+}
+```
 
 ## authenticate Mutation
 
@@ -64,6 +78,22 @@ mutation($input: AuthenticateInput!){
   "input": {
       "email": "demo@demo.at",
       "password": "123456789",
+  }
+}
+```
+
+
+**Result:**
+```json
+{
+  "data": {
+    "authenticate": {
+      "accessToken": "2|6okeHVOnUeHR392ArASz957LV2dBFCG5QHtFpn16",
+      "user": {
+        "id": "1",
+        "email": "demo@demo.at"
+      }
+    }
   }
 }
 ```
