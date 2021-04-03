@@ -15,6 +15,7 @@ Can be used to get all user data for a specific accessToken.
 (in this case only the accessToken is used instead of the credentials, like in the `authenticate` case.)
 
 **request preparation:**
+
 To make this query (and all other room/message queries work) you need to pass the `accessToken` from the mutations above as a Authorization header.
 
 So, the headers should have at least the following content.
