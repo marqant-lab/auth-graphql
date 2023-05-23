@@ -12,7 +12,7 @@
     "require": {
         "illuminate/support": "^8.0|^9.0|^10.0",
         "laravel/sanctum": "^2.9|^3.2",
-        "tjventurini/graphql-exceptions": "~0.0.6"
+        "tjventurini/graphql-exceptions": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -31,6 +31,12 @@
             "providers": [
                "Marqant\\AuthGraphQL\\Providers\\AuthGraphQLServiceProvider"
             ]
+        }
+    },
+    "repositories": {
+        "graphql-exceptions": {
+            "type": "vcs",
+            "url": "https://github.com/marqant-lab/graphql-exceptions"
         }
     }
 }
