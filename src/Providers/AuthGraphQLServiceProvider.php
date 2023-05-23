@@ -38,6 +38,11 @@ class AuthGraphQLServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../lang' => resource_path('lang/vendor/auth-graphql'),
         ]);
+
+        //////////////////
+        //  migrations  //
+        //////////////////
+        $this->mergeMigrations();
     }
 
     public function register()
@@ -69,5 +74,13 @@ class AuthGraphQLServiceProvider extends ServiceProvider
             'lighthouse.namespaces.mutations' => array_merge((array) config('lighthouse.namespaces.mutations'),
                 (array) 'Marqant\\AuthGraphQL\\GraphQL\\Mutations'),
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    private function mergeMigrations(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
     }
 }
