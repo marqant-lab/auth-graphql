@@ -8,6 +8,12 @@
 Add (closed):
  - [#10] Implement the Logic to signin any Model (also the user) via an email link (email_token).
 
+### 3.0.3 (2023-05-31)
+
+ - Removed "tjventurini/graphql-exceptions": "^1.0" from dependencies.
+ - Moved and updated Exception classes to the package itself.
+ - Changed resolve() to __invoke() in mutation classes.
+
 ### 2.0.0 (2021-02-12)
 
 Updated:

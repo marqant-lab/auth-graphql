@@ -4,7 +4,7 @@ namespace Marqant\AuthGraphQL\GraphQL\Mutations;
 
 use Exception;
 use Illuminate\Support\Facades\Hash;
-use Tjventurini\GraphQLExceptions\Exceptions\ClientSaveInternalGraphQLException;
+use Marqant\AuthGraphQL\Exceptions\ClientSaveInternalGraphQLException;
 
 /**
  * Class Register
@@ -21,7 +21,7 @@ class Register
      *
      * @throws Exception
      */
-    public function resolve($rootValue, array $args)
+    public function __invoke($rootValue, array $args)
     {
         try {
             $model = app(config('auth.providers.users.model'));

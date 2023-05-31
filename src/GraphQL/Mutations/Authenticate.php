@@ -4,8 +4,8 @@ namespace Marqant\AuthGraphQL\GraphQL\Mutations;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Tjventurini\GraphQLExceptions\Exceptions\ClientSaveInternalGraphQLException;
-use Tjventurini\GraphQLExceptions\Exceptions\ClientSaveValidationGraphQLException;
+use Marqant\AuthGraphQL\Exceptions\ClientSaveInternalGraphQLException;
+use Marqant\AuthGraphQL\Exceptions\ClientSaveValidationGraphQLException;
 
 /**
  * Class Authenticate
@@ -22,7 +22,7 @@ class Authenticate
      *
      * @throws \Exception
      */
-    public function resolve($rootValue, array $args)
+    public function __invoke($rootValue, array $args)
     {
         try {
             $model = app(config('auth.providers.users.model'));
