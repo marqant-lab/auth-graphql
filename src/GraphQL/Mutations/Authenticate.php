@@ -2,6 +2,8 @@
 
 namespace Marqant\AuthGraphQL\GraphQL\Mutations;
 
+use Exception;
+use Throwable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Marqant\AuthGraphQL\Exceptions\ClientSaveInternalGraphQLException;
@@ -20,7 +22,7 @@ class Authenticate
      *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __invoke($rootValue, array $args)
     {
@@ -30,8 +32,8 @@ class Authenticate
                 $user = $model
                     ->where(config('auth.user_key_field'), $args['email'])
                     ->firstOrFail();
-            } catch (\Exception $exception) {
-                throw new \Exception(__('Wrong username or password.'));
+            } catch (Exception $exception) {
+                throw new Exception(__('Wrong username or password.'));
             }
             if (!$user || !Hash::check($args['password'], $user->password)) {
                 throw ValidationException::withMessages([
@@ -44,7 +46,7 @@ class Authenticate
             ];
         } catch (ValidationException $validationException) {
             throw new ClientSaveValidationGraphQLException($validationException);
-        } catch (\Exception $exception) {
+        } catch (Throwable $exception) {
             throw new ClientSaveInternalGraphQLException($exception);
         }
     }

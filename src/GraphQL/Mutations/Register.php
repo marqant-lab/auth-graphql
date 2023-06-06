@@ -2,7 +2,7 @@
 
 namespace Marqant\AuthGraphQL\GraphQL\Mutations;
 
-use Exception;
+use Throwable;
 use Illuminate\Support\Facades\Hash;
 use Marqant\AuthGraphQL\Exceptions\ClientSaveInternalGraphQLException;
 
@@ -19,7 +19,7 @@ class Register
      *
      * @return array
      *
-     * @throws Exception
+     * @throws Throwable
      */
     public function __invoke($rootValue, array $args)
     {
@@ -43,7 +43,7 @@ class Register
                 'accessToken' => $model->createToken($model->id)->plainTextToken,
                 'user' => $model,
             ];
-        } catch (Exception $exception) {
+        } catch (Throwable $exception) {
             throw new ClientSaveInternalGraphQLException($exception);
         }
     }
